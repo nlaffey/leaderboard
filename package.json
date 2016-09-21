@@ -23,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "UPDATE ME"
+    "url": "https://github.com/nlaffey/minimal-react-kit"
   },
   "author": "Nick Laffey",
   "license": "ISC",
   "bugs": {
-    "url": "UPDATE ME"
+    "url": "https://github.com/nlaffey/minimal-react-kit/issues"
   },
-  "homepage": "UPDATE ME",
+  "homepage": "https://github.com/nlaffey/minimal-react-kit/",
   "dependencies": {},
   "devDependencies": {
     "babel": "^6.5.2",

@@ -1,7 +1,7 @@
 {
   "name": "minimal-react-kit",
   "version": "1.0.0",
-  "description": "A simplified starter kit using React and Webkit to serve a static SPA.",
+  "description": "A win/loss tracking app",
   "main": "index.js",
   "scripts": {
     "dev-server": "webpack-dev-server",
@@ -23,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nlaffey/minimal-react-kit"
+    "url": "https://github.com/nlaffey/leaderboard"
   },
   "author": "Nick Laffey",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nlaffey/minimal-react-kit/issues"
+    "url": "https://github.com/nlaffey/leaderboard/issues"
   },
-  "homepage": "https://github.com/nlaffey/minimal-react-kit/",
+  "homepage": "https://github.com/nlaffey/leaderboard/",
   "dependencies": {},
   "devDependencies": {
     "babel": "^6.5.2",

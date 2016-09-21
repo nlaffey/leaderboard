@@ -1,4 +1,4 @@
-# ReactKit
+# Minimal-ReactKit
 
 A simplified starter kit using React and Webkit to serve a static SPA.
 

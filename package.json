@@ -1,7 +1,7 @@
 {
-  "name": "update-me",
+  "name": "minimal-react-kit",
   "version": "1.0.0",
-  "description": "UPDATE ME",
+  "description": "A simplified starter kit using React and Webkit to serve a static SPA.",
   "main": "index.js",
   "scripts": {
     "dev-server": "webpack-dev-server",

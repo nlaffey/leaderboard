@@ -8,7 +8,7 @@ class Content extends React.Component {
 
     render() {
         return (
-            <Form/>
+            <div>{this.props.children}</div>
         );
     }
 }

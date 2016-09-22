@@ -3027,7 +3027,7 @@
 	 *
 	 * These systems should generally use pooling to reduce the frequency of garbage
 	 * collection. The system should check `isPersistent` to determine whether the
-	 * event should be released into the pool after being dispatched. Users that
+	 * event should be released into the pool after being dispatched. Players that
 	 * need a persisted event should invoke `persist`.
 	 *
 	 * Synthetic events (and subclasses) implement the DOM Level 3 Events API by

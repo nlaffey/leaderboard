@@ -2,6 +2,7 @@ import React from 'react';
 import Input from './Input';
 import $ from 'jquery';
 import Spinner from './Spinner';
+import errorMessages from '../../helpers/errorMessages';
 
 class Form extends React.Component {
 
@@ -13,8 +14,6 @@ class Form extends React.Component {
             errorMessage: '',
             successMessage: '',
         }
-
-        this.ERROR_UNKNOWN = 'Something went wrong... why don\'t you debug it?';
     }
 
     clearMessages() {
@@ -25,13 +24,19 @@ class Form extends React.Component {
         });
     }
 
+    handleChange(event) {
+        var state = {};
+        state[event.target.name] = event.target.value;
+        this.setState(state);
+    }
+
     handleSubmit(event) {
         var _this = this;
         event.preventDefault();
         var data = this.state;
 
         this.clearMessages();
-        var xhr = $.post('/addPerson', data);
+        var xhr = $.post('/addPlayer', data);
 
         xhr.done(function (response) {
             if (response.name) {
@@ -39,8 +44,9 @@ class Form extends React.Component {
                     successMessage: response.name + ' was added!',
                     personName: ''
                 });
+                _this.props.onSuccess();
             } else {
-                _this.setState({errorMessage: _this.ERROR_UNKNOWN})
+                _this.setState({errorMessage: errorMessages.UNKNOWN})
             }
 
         });
@@ -48,13 +54,13 @@ class Form extends React.Component {
         xhr.fail(function (response) {
             var message = '';
             if (!response.responseJSON || !response.responseJSON.code) {
-                _this.setState({errorMessage: _this.ERROR_UNKNOWN});
+                _this.setState({errorMessage: errorMessages.UNKNOWN});
             }
 
             if (response.responseJSON.code === 11000) {
-                message = 'That name already exists. Choose something a little more... unique?'
+                message = errorMessages.UNIQUE_NAME;
             } else {
-                message = _this.ERROR_UNKNOWN
+                message = errorMessages.UNKNOWN;
             }
             _this.setState({errorMessage: message});
 
@@ -63,12 +69,6 @@ class Form extends React.Component {
         xhr.always(function () {
             _this.setState({xhrProcessing: false});
         })
-    }
-
-    handleChange(event) {
-        var state = {};
-        state[event.target.name] = event.target.value;
-        this.setState(state);
     }
 
     render() {

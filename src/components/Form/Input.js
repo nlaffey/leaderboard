@@ -6,7 +6,7 @@ class Input extends React.Component {
     }
 
     render() {
-        return (<div>
+        return (<div className="form-group">
             <label htmlFor={this.props.name}>{this.props.friendlyName}</label>
             <input id={this.props.name}
                    name={this.props.name}

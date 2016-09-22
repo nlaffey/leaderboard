@@ -1,17 +1,16 @@
-import React, {
-    Component,
-    PropTypes,
-} from 'react';
+import React from 'react';
+import Form from '../Form/Form';
 
-class Content extends Component {
+class Content extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <div>[Content area]</div>
+            <Form/>
         );
     }
 }
-
-Content.propTypes = {};
-Content.defaultProps = {};
 
 export default Content;

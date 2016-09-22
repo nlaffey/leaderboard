@@ -1,12 +1,39 @@
-var React = require('react');
+import React from 'react';
+import Input from './Input';
+import $ from 'jquery';
 
-var Form = React.createClass({
-    render: function () {
+class Form extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {personName: ''};
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        var data = this.state;
+        $.post('/newPerson', data, function () {
+            console.log('done');
+
+        });
+    }
+
+    handleChange(event) {
+        var state = {};
+        state[event.target.name] = event.target.value;
+        this.setState(state);
+    }
+
+    render() {
         return (
-            <div className="Form">
+            <div>
+                <form onSubmit={this.handleSubmit.bind(this)}>
+                    <Input name="personName" value={this.state.value} handleChange={this.handleChange.bind(this)}/>
+                </form>
             </div>
         )
     }
-});
 
-module.exports = Form;
+}
+
+export default Form;

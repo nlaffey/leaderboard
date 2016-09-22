@@ -1,23 +1,16 @@
 import React from 'react';
-import $ from 'jquery';
 
-var NewPerson = React.createClass({
-
-    getInitialState: function() {
-        return {value: 'Hello!'};
-    },
-    handleChange: function(event) {
-        this.setState({value: event.target.value});
-    },
-    render: function() {
-        return (
-            <input
-                type="text"
-                value={this.state.value}
-                onChange={this.handleChange}
-            />
-        );
+class Input extends React.Component {
+    constructor(props) {
+        super(props);
     }
-});
 
-module.exports = NewPerson;
+    render() {
+        return (
+           <input name={this.props.name} value={this.props.value} onChange={this.props.handleChange}/>
+        )
+    }
+
+}
+
+export default Input;

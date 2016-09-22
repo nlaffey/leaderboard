@@ -39,21 +39,24 @@ module.exports = {
                     'file?name=img/[name].[ext]',
                     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
+            },
+            {
+                test: /\.ico$/i,
+                loader: 'file?name=img/[name].[ext]'
             }
         ]
     },
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NOD_ENV': JSON.stringify('production')
+                'NOD_ENV': JSON.stringify('development')
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            minimize: process.env.NODE_ENV === 'production',
-            compress: {
-                warnings: false
-            }
-        }),
-
+        // new webpack.optimize.UglifyJsPlugin({
+        //     minimize: false, //process.env.NODE_ENV === 'production',
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
     ]
 }

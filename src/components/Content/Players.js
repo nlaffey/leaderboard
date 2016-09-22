@@ -1,8 +1,9 @@
 import React from 'react';
 import Form from '../Form/Form';
-import {Table} from 'reactable';
+import Table from '../Table/Table';
 import $ from 'jquery';
 import errorMessages from '../../helpers/errorMessages';
+import AddUserForm from '../Form/AddUserForm';
 
 class Players extends React.Component {
     constructor(props) {
@@ -20,6 +21,8 @@ class Players extends React.Component {
         var players = this.getPlayers();
         this.setState({players: players});
     }
+
+
 
     getPlayers() {
         var _this = this;
@@ -40,14 +43,15 @@ class Players extends React.Component {
         });
     }
 
+
     render() {
         return (
             <div>
                 <h2>Add a new player</h2>
-                <Form onSuccess={this.getPlayers.bind(this)}/>
+                <AddUserForm onSuccess={this.getPlayers.bind(this)}/>
                 <h2>Players</h2>
                 <div>{this.state.errorMessage}</div>
-                <Table data={this.state.players} columns={[{key: 'name', label: 'Name'}]}/>
+                <Table data={this.state.players} columns={[{propName: 'name', friendlyName: 'Name'}]}/>
             </div>
         );
     }

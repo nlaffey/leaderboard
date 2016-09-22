@@ -69,7 +69,18 @@ app.get('/getPlayers', function (req, res) {
         if (result.name !== DB_ERROR) {
             res.send(result)
         } else {
-            res.status(500)
+            res.status(500);
+            res.send(result);
+        }
+    });
+});
+
+app.get('/getNameSuggestion', function(req, res){
+    dbContract.getNameSuggestion(req.query.name, function(result){
+        if (result.name !== DB_ERROR) {
+            res.send(result)
+        } else {
+            res.status(500);
             res.send(result);
         }
     });

@@ -3387,7 +3387,7 @@
 
 	var doesChangeEventBubble = false;
 	if (ExecutionEnvironment.canUseDOM) {
-	  // See `handleChange` comment below
+	  // See `handlePlayerChange` comment below
 	  doesChangeEventBubble = isEventSupported('change') && (!document.documentMode || document.documentMode > 8);
 	}
 
@@ -10433,7 +10433,7 @@
 
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
-	 * supplied to React components. Example usage:
+	 * supplied to React components. SelectUser usage:
 	 *
 	 *   var Props = require('ReactPropTypes');
 	 *   var MyArticle = React.createClass({
@@ -21111,7 +21111,7 @@
 	/**
 	 * ReactElementValidator provides a wrapper around a element factory
 	 * which validates the props passed to the element. This is intended to be
-	 * used only in DEV and could be replaced by a static type checker for languages
+	 * used only in DEV and could be replaced by a static type checker for players
 	 * that support it.
 	 */
 
@@ -27210,13 +27210,13 @@
 	    }
 
 	    _createClass(Form, [{
-	        key: 'handleChange',
+	        key: 'handlePlayerChange',
 	        value: function handleChange() {
 	            debugger;
 	            this.setState({ value: event.target.value });
 	        }
 	    }, {
-	        key: 'handleSubmit',
+	        key: 'handleSubmitForm',
 	        value: function handleSubmit() {}
 	    }, {
 	        key: 'render',

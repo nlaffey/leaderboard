@@ -5,12 +5,12 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 const bodyParser = require('body-parser');
-const db = require('./database');
+const db = require('./src/database/database');
 const multer = require('multer'); //middleware for handling multipart/form-data,
 const upload = multer();
-const contract = require('./contract');
+const contract = require('./src/contract/contract');
 
-const dbContract = new contract(db);
+const dbContract = new contract();
 
 // TODO: Review why process.env.NODE_ENV is undefined here
 const isDeveloping = process.env.NODE_ENV !== 'production';
@@ -47,8 +47,20 @@ if (isDeveloping) {
 }
 
 
-app.post('/newPerson', upload.array(), function (req, res) {
-    dbContract.addPerson(req.body)
+const DUPLICATE_KEY_ERROR = 11000;
+const DB_ERROR = "MongoError";
+
+app.post('/addPerson', upload.array(), function (req, res) {
+    dbContract.addPerson(req.body, function (result) {
+        if (result.name !== DB_ERROR) {
+            res.send(result);
+        } else if (result.code == DUPLICATE_KEY_ERROR) {
+            res.status(400);
+            res.send(result);
+        } else {
+            res.status(500);
+        }
+    });
 });
 
 const port = isDeveloping ? 3000 : process.env.PORT;

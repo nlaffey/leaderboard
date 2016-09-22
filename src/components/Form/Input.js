@@ -6,9 +6,13 @@ class Input extends React.Component {
     }
 
     render() {
-        return (
-           <input name={this.props.name} value={this.props.value} onChange={this.props.handleChange}/>
-        )
+        return (<div>
+            <label htmlFor={this.props.name}>{this.props.friendlyName}</label>
+            <input id={this.props.name}
+                   name={this.props.name}
+                   value={this.props.value}
+                   onChange={this.props.handleChange}/>
+        </div>)
     }
 
 }

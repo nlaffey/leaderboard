@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
-    name: String,
+    name: {type: String, index: {unique: true, dropDups: true}},
     id: mongoose.Schema.Types.ObjectId
 });
 

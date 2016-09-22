@@ -11,7 +11,7 @@ class Input extends React.Component {
             <input id={this.props.name}
                    name={this.props.name}
                    value={this.props.value}
-                   onChange={this.props.handlePlayerChange}/>
+                   onChange={this.props.handleChange}/>
         </div>)
     }
 

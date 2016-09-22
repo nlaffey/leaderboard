@@ -27212,7 +27212,6 @@
 	    _createClass(Form, [{
 	        key: 'handlePlayerChange',
 	        value: function handleChange() {
-	            debugger;
 	            this.setState({ value: event.target.value });
 	        }
 	    }, {

@@ -115,6 +115,4 @@ class NewGame extends React.Component {
     }
 }
 
-export
-default
-NewGame;
+export default NewGame;

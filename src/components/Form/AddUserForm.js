@@ -76,7 +76,7 @@ class AddUserForm extends React.Component {
     render() {
         return (
             // Passing down the entire state here might be overkill, but I don't see the harm right now.
-            <Form formState={this.state} handleSubmit={this.handleSubmit.bind(this)}
+            <Form formState={this.state} handleSubmitForm={this.handleSubmit.bind(this)}
                   handleChange={this.handleChange.bind(this)}>
                 <Input friendlyName="Name" name="personName"/>
             </Form>

@@ -17,7 +17,7 @@ class Form extends React.Component {
         var _this = this;
         return React.Children.map(this.props.children, function (child) {
             return React.cloneElement(child, {
-                handleChange: _this.props.handlePlayerChange.bind(_this),
+                handleChange: _this.props.handleChange.bind(_this),
                 value: _this.props.formState[child.props.name]
             })
         });

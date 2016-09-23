@@ -73,6 +73,17 @@ app.post('/gameResults', upload.array(), function (req, res) {
     });
 });
 
+app.get('/gameResults', function (req, res) {
+    dbContract.getGameResults(function (promise) {
+        promise.then(function (results) {
+            res.send(results)
+        }).catch(function (err) {
+            res.status(500);
+            res.send(err);
+        });
+    });
+});
+
 
 app.get('/getPlayers', function (req, res) {
     dbContract.getPlayers(function (promise) {

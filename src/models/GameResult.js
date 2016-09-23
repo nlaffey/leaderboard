@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 var schema = mongoose.Schema({
     timestamp: {type: Date, default: Date.now},
     winners: [],
-    losers: []
+    losers: [],
 });
 
-module.exports = mongoose.model('ResultEntry', schema);
+module.exports = mongoose.model('GameResults', schema);

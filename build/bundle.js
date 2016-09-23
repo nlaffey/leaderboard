@@ -27201,10 +27201,10 @@
 	        var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
 	        _this.inputs = {
-	            personName: 'personName'
+	            playerName: 'playerName'
 	        };
 	        _this.state = {};
-	        _this.state[_this.inputs.personName] = '';
+	        _this.state[_this.inputs.playerName] = '';
 
 	        return _this;
 	    }

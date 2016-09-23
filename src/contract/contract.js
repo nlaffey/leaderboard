@@ -1,6 +1,6 @@
 'use strict';
 
-const Person = require('./../models/Person');
+const Player = require('./../models/Player');
 const GameResults = require('./../models/GameResult');
 const Promise = require('bluebird');
 var mongoose = require('mongoose');
@@ -19,15 +19,30 @@ class Contract {
         });
     }
 
+    getGameResults(callback) {
+        return callback(GameResults.find({}).exec());
+    }
+
+
+    calcRatio(win, loss) {
+        if (loss == 0) {
+            return win;
+        }
+        if (win == 0) {
+            return 0;
+        }
+        return win / loss;
+    }
 
     addGameResults(data, callback) {
+        var _this = this;
         var players = data.players;
         var getDocPromises = [];
         var saveDocPromises = [];
 
         for (var i = 0; i < players.length; i++) {
             let name = players[i].name;
-            var query = Person.findOne({name: name});
+            var query = Player.findOne({name: name});
             getDocPromises.push(query);
         }
 
@@ -38,15 +53,16 @@ class Contract {
             for (var i = 0; i < arguments.length; i++) {
                 let doc = arguments[i];
                 let result = players[i].result;
-
                 if (result == 'W') {
-                    gameResults.winners.push(doc._id);
+                    gameResults.winners.push(doc.name);
                     doc.win += 1;
                 }
                 else if (result == 'L') {
-                    gameResults.losers.push(doc._id);
+                    gameResults.losers.push(doc.name);
                     doc.loss += 1;
                 }
+
+                doc.ratio = _this.calcRatio(doc.win, doc.loss);
 
                 saveDocPromises.push(doc.save());
             }
@@ -62,13 +78,13 @@ class Contract {
     }
 
     addPlayer(data, callback) {
-        var person = new Person({name: data.personName});
-        var promise = person.save();
+        var player = new Player({name: data.playerName});
+        var promise = player.save();
         callback(promise);
     }
 
     getPlayers(callback) {
-        return callback(Person.find({}, 'name').exec());
+        return callback(Player.find({}).exec());
     }
 
 }

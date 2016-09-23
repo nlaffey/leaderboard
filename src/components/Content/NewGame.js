@@ -19,14 +19,11 @@ class NewGame extends React.Component {
             successMessage: '',
             errorMessage: '',
         }
-    }
 
-    componentDidMount() {
-        this.getPlayers();
     }
 
     playerDoesNotExist(testee) {
-        var matches = this.state.players.filter(function (player) {
+        var matches = this.props.players.filter(function (player) {
             return player.name == testee;
         });
 
@@ -55,7 +52,7 @@ class NewGame extends React.Component {
             invalid = true;
         }
         if (player1 == player2) {
-            this.setState({[player2Err]: errors.SAME_PERSON});
+            this.setState({[player2Err]: errors.SAME_PLAYER});
             invalid = true;
         }
         if (this.state.playerTeam1WL + this.state.playerTeam2WL == 'LL') {
@@ -75,10 +72,10 @@ class NewGame extends React.Component {
         var data = {
             players: [{
                 name: this.state.playerTeam1,
-                result: this.state.playerTeam1WL ? 'W' : 'L'
+                result: this.state.playerTeam1WL,
             }, {
                 name: this.state.playerTeam2,
-                result: this.state.playerTeam2WL ? 'W' : 'L'
+                result: this.state.playerTeam2WL,
             }]
         }
 
@@ -93,9 +90,11 @@ class NewGame extends React.Component {
                 playerTeam1WL: 'L',
                 playerTeam2WL: 'L',
             });
+            _this.props.handleUpdate();
         });
 
-        xhr.fail(function (err) {
+        xhr.fail(function () {
+            // TODO: Error handling.
             _this.setState({
                 errorMessage: errors.UNKNOWN,
             });
@@ -115,26 +114,6 @@ class NewGame extends React.Component {
             errorMessage: '',
         });
 
-    }
-
-    // TODO: Not DRY
-    getPlayers() {
-        var _this = this;
-        this.setState({xhrProcessing: true});
-        var xhr = $.get('/getPlayers');
-
-        xhr.done(function (data) {
-            // TODO: Error handling here. What else can come back?
-            _this.setState({players: data});
-        });
-
-        xhr.fail(function () {
-            _this.setState({errorMessage: errorMessages.UNKNOWN})
-        });
-
-        xhr.always(function () {
-            _this.setState({xhrProcessing: false});
-        });
     }
 
     handlePlayerChange(team, proxy, change) {
@@ -157,7 +136,7 @@ class NewGame extends React.Component {
                     <h3>Team 1</h3>
                     <SelectPlayer id="SelectPlayerTeam1"
                                   selectedPlayer={this.state.playerTeam1}
-                                  players={this.state.players}
+                                  players={this.props.players}
                                   handlePlayerChange={this.handlePlayerChange.bind(this, team1)}
                                   errorMessage={this.state.playerTeam1ErrorMessage}/>
 
@@ -169,7 +148,7 @@ class NewGame extends React.Component {
                     <h3>Team 2</h3>
                     <SelectPlayer id="SelectPlayerTeam2"
                                   selectedPlayer={this.state.playerTeam2}
-                                  players={this.state.players}
+                                  players={this.props.players}
                                   handlePlayerChange={this.handlePlayerChange.bind(this, team2)}
                                   errorMessage={this.state.playerTeam2ErrorMessage}/>
 

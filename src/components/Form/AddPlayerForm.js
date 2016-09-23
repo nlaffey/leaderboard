@@ -11,7 +11,7 @@ class AddUserForm extends React.Component {
         super(props);
 
         this.state = {
-            personName: '',
+            playerName: '',
             xhrProcessing: false,
             errorMessage: '',
             successMessage: '',
@@ -45,7 +45,7 @@ class AddUserForm extends React.Component {
             if (response.name) {
                 _this.setState({
                     successMessage: response.name.trim() + ' was added!',
-                    personName: ''
+                    playerName: ''
                 });
                 _this.props.onSuccess();
             } else {
@@ -79,7 +79,7 @@ class AddUserForm extends React.Component {
             // Passing down the entire state here might be overkill, but I don't see the harm right now.
             <Form formState={this.state} handleSubmitForm={this.handleSubmit.bind(this)}
                   handleChange={this.handleChange.bind(this)}>
-                <Input friendlyName="Name" name="personName"/>
+                <Input friendlyName="Name" name="playerName"/>
             </Form>
         );
     }

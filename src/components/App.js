@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import Leaderboard from './Content/Leaderboard';
 
 class App extends Component {
 
@@ -8,7 +9,7 @@ class App extends Component {
         return (
             <div>
                 <Header/>
-                {this.props.children}
+                <Leaderboard/>
                 <Footer/>
             </div>
         );

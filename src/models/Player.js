@@ -5,6 +5,7 @@ var schema = mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     win: {type: Number, default: 0},
     loss: {type: Number, default: 0},
+    ratio: {type: Number, default: 0},
 });
 
-module.exports = mongoose.model('Person', schema);
+module.exports = mongoose.model('Player', schema);

@@ -1,4 +1,5 @@
 import React from 'react';
+import filterData from '../../helpers/filterData';
 
 // TODO: Find a more robust library component to handle more complex tasks.
 // TODO: Separate table children into components.
@@ -9,25 +10,19 @@ class Table extends React.Component {
     }
 
     renderTds(item) {
-        var tds = [];
-        var key = 0;
-
-        var columns = this.props.columns.map(function (column) {
-            return column.propName;
+        var tds = this.props.columns.map(function (column, idx) {
+            if (item.hasOwnProperty(column.propName)) {
+                var value = filterData(column.propName, item[column.propName]);
+                return <td key={idx}>{value}</td>
+            }
         });
 
-        for (var prop in item) {
-            if (item.hasOwnProperty(prop) && columns.indexOf(prop) > -1) {
-                tds.push(<td key={key}>{item[prop]}</td>)
-                key++
-            }
-        }
         return tds;
     }
 
     renderRows() {
         var _this = this;
-        if (!this.props.data || this.props.data.length === 0) {
+        if (!this.props.data) {
             return (<tr>
                 <td>No data</td>
             </tr>);
@@ -40,8 +35,8 @@ class Table extends React.Component {
         });
     }
 
-    renderTh() {
-        if (!this.props.columns || this.props.columns.length == 0) return;
+    renderTh(columns) {
+        if (!columns || columns == 0) return;
         return this.props.columns.map(function (item, idx) {
             return <th key={idx}>{item.friendlyName}</th>
         });
@@ -51,7 +46,7 @@ class Table extends React.Component {
         return (
             <table>
                 <thead>
-                <tr>{this.renderTh()}</tr>
+                <tr>{this.renderTh(this.props.columns)}</tr>
                 </thead>
                 <tbody>
                 {this.renderRows(this.props.data)}

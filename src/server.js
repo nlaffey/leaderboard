@@ -48,7 +48,6 @@ if (isDeveloping) {
 
 
 const DUPLICATE_KEY_ERROR = 11000;
-const DB_ERROR = "MongoError";
 
 app.post('/addPlayer', upload.array(), function (req, res) {
     dbContract.addPlayer(req.body, function (promise) {

@@ -156,7 +156,7 @@ class NewGame extends React.Component {
                                    friendlyName="Winner"
                                    handleChange={this.handleWinnerChange.bind(this, team1)}
                                    checked={this.state.playerTeam1WL === 'W'}/>
-                    <div className="versus">Versus</div>
+                    <div className="text-center">VERSUS</div>
                     <SelectPlayer id="SelectPlayerTeam2"
                                   selectedPlayer={this.state.playerTeam2}
                                   players={this.props.players}
@@ -167,8 +167,8 @@ class NewGame extends React.Component {
                                    friendlyName="Winner"
                                    handleChange={this.handleWinnerChange.bind(this, team2)}
                                    checked={this.state.playerTeam2WL === 'W'}/>
-                    <input type="submit" value="Submit" className="btn btn-default"
-                           onClick={this.handleSubmitForm.bind(this)}/>
+                    <button className="btn btn-default"
+                            onClick={this.handleSubmitForm.bind(this)}>Add game</button>
                     {this.renderMessage()}
                 </form>
             </div>

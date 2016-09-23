@@ -2,15 +2,22 @@
 @import 'autosuggest';
 @import 'transition';
 
+.container {
+  margin-bottom: 50px;
+}
+
 .display-none {
   display: none;
 }
 
-.versus{
-  text-align:center;
-  font-size:1.2em;
+.versus {
+  text-align: center;
+  font-size: 1.2em;
 }
 
-.alert{
-  margin-top:5px;
+/* Bootstrap override */
+.alert {
+  margin-top: 5px;
+  margin-bottom:10px;
+  padding: 5px;
 }

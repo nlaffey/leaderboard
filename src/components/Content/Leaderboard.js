@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Players from './Players';
 import NewGame from '../Form/NewGameForm';
 import FadeInTransition from '../Transition/FadeInTransition'
+import errorMessages from '../../helpers/errorMessages';
 
 class Leaderboard extends React.Component {
     constructor(props) {

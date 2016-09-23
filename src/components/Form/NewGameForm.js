@@ -86,7 +86,7 @@ class NewGame extends React.Component {
 
         xhr.done(function () {
             _this.setState({
-                successMessage: 'New results added successfully.',
+                successMessage: 'New game added successfully.',
                 playerTeam1: '',
                 playerTeam2: '',
                 playerTeam1WL: 'L',

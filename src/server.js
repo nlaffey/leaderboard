@@ -5,12 +5,12 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./../webpack.config.js');
 const bodyParser = require('body-parser');
-const db = require('./database/database');
+const dbConnection = require('./database/database');
 const multer = require('multer'); //middleware for handling multipart/form-data,
 const upload = multer();
 const contract = require('./contract/contract');
 
-const dbContract = new contract(db);
+const dbContract = new contract(dbConnection);
 
 // TODO: Review why process.env.NODE_ENV is undefined here
 const isDeveloping = process.env.NODE_ENV !== 'production';
@@ -96,15 +96,10 @@ app.get('/getPlayers', function (req, res) {
     });
 });
 
-app.get('/getNameSuggestion', function (req, res) {
-    dbContract.getNameSuggestion(req.query.name, function (result) {
-        if (result.name !== DB_ERROR) {
-            res.send(result)
-        } else {
-            res.status(500);
-            res.send(result);
-        }
-    });
+
+app.get('/clearData', function (req, res) {
+    dbContract.clearData();
+    res.send('database cleared');
 });
 
 

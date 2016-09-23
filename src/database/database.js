@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const db = mongoose.connection;
+const dbConnection = mongoose.connection;
 const dbAddress = 'mongodb://localhost/leaderboard';
 mongoose.connect(dbAddress);
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', ()=> {
-    console.log('Successfully connected to db at: ' + dbAddress);
+dbConnection.on('error', console.error.bind(console, 'connection error:'));
+dbConnection.once('open', ()=> {
+    console.log('Successfully connected to dbConnection at: ' + dbAddress);
 });
 
-module.exports = db;
+module.exports = dbConnection;

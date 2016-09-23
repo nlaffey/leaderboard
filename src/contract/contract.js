@@ -9,12 +9,12 @@ mongoose.Promise = require('bluebird');
 
 class Contract {
 
-    constructor(db) {
-        this.db = db;
+    constructor(dbConnection) {
+        this.dbConnection = dbConnection;
     }
 
     find(collec, query, callback) {
-        this.db.collection(collec, function (err, collection) {
+        this.dbConnection.collection(collec, function (err, collection) {
             collection.find(query).toArray(callback);
         });
     }
@@ -85,6 +85,11 @@ class Contract {
 
     getPlayers(callback) {
         return callback(Player.find({}).exec());
+    }
+
+    clearData() {
+        this.dbConnection.db.dropCollection('gameresults');
+        this.dbConnection.db.dropCollection('players');
     }
 
 }

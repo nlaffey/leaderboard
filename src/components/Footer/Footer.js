@@ -6,7 +6,7 @@ import React, {
 class Footer extends Component {
     render() {
         return (
-            <div>[Footer area]</div>
+            <div></div>
         );
     }
 }

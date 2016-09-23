@@ -51,21 +51,42 @@ const DUPLICATE_KEY_ERROR = 11000;
 const DB_ERROR = "MongoError";
 
 app.post('/addPlayer', upload.array(), function (req, res) {
-    dbContract.addPlayer(req.body, function (result) {
-        if (result.name !== DB_ERROR) {
-            res.send(result);
-        } else if (result.code == DUPLICATE_KEY_ERROR) {
-            res.status(400);
-            res.send(result);
-        } else {
-            res.status(500);
-            res.end();
-        }
+    dbContract.addPlayer(req.body, function (promise) {
+        promise.then(function (response) {
+            res.send(response);
+        }).catch(function (err) {
+            if (err.code == DUPLICATE_KEY_ERROR) {
+                res.status(400);
+                res.send(err);
+            } else {
+                res.status(500);
+                res.send(err);
+            }
+        });
     });
 });
+
+app.post('/gameResults', upload.array(), function (req, res) {
+    dbContract.addGameResults(req.body, function (result) {
+        // TODO: Error handling.
+        res.send(result);
+    });
+});
+
 
 app.get('/getPlayers', function (req, res) {
-    dbContract.getPlayers(function (result) {
+    dbContract.getPlayers(function (promise) {
+        promise.then(function (players) {
+            res.send(players);
+        }).catch(function (err) {
+            res.status(500);
+            res.send(err);
+        });
+    });
+});
+
+app.get('/getNameSuggestion', function (req, res) {
+    dbContract.getNameSuggestion(req.query.name, function (result) {
         if (result.name !== DB_ERROR) {
             res.send(result)
         } else {
@@ -75,16 +96,6 @@ app.get('/getPlayers', function (req, res) {
     });
 });
 
-app.get('/getNameSuggestion', function(req, res){
-    dbContract.getNameSuggestion(req.query.name, function(result){
-        if (result.name !== DB_ERROR) {
-            res.send(result)
-        } else {
-            res.status(500);
-            res.send(result);
-        }
-    });
-});
 
 const port = isDeveloping ? 3000 : process.env.PORT;
 app.listen(port, function onStart(err) {

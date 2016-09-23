@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import Content from './Content/Content';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 

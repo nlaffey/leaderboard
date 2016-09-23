@@ -32,6 +32,7 @@ class AddUserForm extends React.Component {
         this.setState(state);
     }
 
+
     handleSubmit(event) {
         var _this = this;
         event.preventDefault();
@@ -43,7 +44,7 @@ class AddUserForm extends React.Component {
         xhr.done(function (response) {
             if (response.name) {
                 _this.setState({
-                    successMessage: response.name + ' was added!',
+                    successMessage: response.name.trim() + ' was added!',
                     personName: ''
                 });
                 _this.props.onSuccess();

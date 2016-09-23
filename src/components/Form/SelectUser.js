@@ -51,17 +51,21 @@ class SelectUser extends React.Component {
 
     render() {
         return (
-            <Autosuggest id={this.props.id}
-                         suggestions={this.state.suggestions}
-                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}
-                         onSuggestionsClearRequested={this.onSuggestionsClearRequested.bind(this)}
-                         getSuggestionValue={this.getSuggestionValue}
-                         renderSuggestion={this.renderSuggestion}
-                         inputProps={{
-                             placeholder: 'Type a players name',
-                             value: this.props.selectedPlayer,
-                             onChange: this.props.handlePlayerChange
-                         }}/>
+            <div>
+                <div>{this.props.errorMessage}</div>
+                <label htmlFor={this.props.id}>Name</label>
+                <Autosuggest id={this.props.id}
+                             suggestions={this.state.suggestions}
+                             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}
+                             onSuggestionsClearRequested={this.onSuggestionsClearRequested.bind(this)}
+                             getSuggestionValue={this.getSuggestionValue}
+                             renderSuggestion={this.renderSuggestion}
+                             inputProps={{
+                                 placeholder: 'Type a players name',
+                                 value: this.props.selectedPlayer,
+                                 onChange: this.props.handlePlayerChange
+                             }}/>
+            </div>
         );
     }
 }

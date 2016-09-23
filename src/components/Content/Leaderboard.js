@@ -2,7 +2,8 @@ import React from 'react';
 import Results from './Results';
 import $ from 'jquery';
 import Players from './Players';
-import NewGame from './NewGame';
+import NewGame from '../Form/NewGameForm';
+import FadeInTransition from '../Transition/FadeInTransition'
 
 class Leaderboard extends React.Component {
     constructor(props) {
@@ -50,8 +51,8 @@ class Leaderboard extends React.Component {
 
 
     handleUpdate() {
-         this.getPlayers();
-         this.getResults();
+        this.getPlayers();
+        this.getResults();
     }
 
     componentDidMount() {
@@ -60,11 +61,13 @@ class Leaderboard extends React.Component {
 
     render() {
         return (
-            <div id="leaderboard">
-                <Players players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
-                <Results results={this.state.results}/>
-                <NewGame players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
-            </div>
+            <FadeInTransition>
+                <div key="leaderboard" id="leaderboard">
+                    <Players key="players" players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
+                    <Results key="results" results={this.state.results}/>
+                    <NewGame key="newgame" players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
+                </div>
+            </FadeInTransition>
         );
     }
 }

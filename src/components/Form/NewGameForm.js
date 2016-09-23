@@ -1,7 +1,7 @@
 import React from 'react';
-import SelectPlayer from '../Form/SelectUser';
+import SelectPlayer from './SelectUser';
 import $ from 'jquery';
-import InputCheckbox from '../Form/InputCheckbox';
+import InputCheckbox from './InputCheckbox';
 import errors from '../../helpers/errorMessages';
 
 class NewGame extends React.Component {
@@ -19,6 +19,8 @@ class NewGame extends React.Component {
             successMessage: '',
             errorMessage: '',
         }
+
+        this.id = 'newGameForm';
 
     }
 
@@ -126,6 +128,17 @@ class NewGame extends React.Component {
         this.setState({playerTeam2WL: team == 2 && checked === true ? 'W' : 'L'});
     }
 
+    renderMessage() {
+        var success = this.state.successMessage;
+        var error = this.state.errorMessage;
+        if (error + success === '') return;
+        var alertClass = success !== '' ? 'success' : 'danger';
+        return (<div id={this.id + '-form-message'} className={'alert alert-' + alertClass}>
+            {error || success}
+        </div>)
+    }
+
+
     render() {
         const team1 = 1;
         const team2 = 2;
@@ -154,9 +167,9 @@ class NewGame extends React.Component {
                                    friendlyName="Winner"
                                    handleChange={this.handleWinnerChange.bind(this, team2)}
                                    checked={this.state.playerTeam2WL === 'W'}/>
-                    <input type="submit" value="Submit" className="btn btn-default" onClick={this.handleSubmitForm.bind(this)}/>
-                    <div>{this.state.successMessage}</div>
-                    <div>{this.state.errorMessage}</div>
+                    <input type="submit" value="Submit" className="btn btn-default"
+                           onClick={this.handleSubmitForm.bind(this)}/>
+                    {this.renderMessage()}
                 </form>
             </div>
 

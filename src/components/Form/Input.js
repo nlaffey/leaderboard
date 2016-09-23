@@ -6,9 +6,11 @@ class Input extends React.Component {
     }
 
     render() {
-        return (<div className="form-group">
+        return (<div className={'form-group ' + this.props.className}>
             <label htmlFor={this.props.name}>{this.props.friendlyName}</label>
-            <input id={this.props.name}
+            <input aria-invalid={this.props.ariaInvalid}
+                   aria-described-by={this.props.formId}
+                   id={this.props.name}
                    name={this.props.name}
                    value={this.props.value}
                    onChange={this.props.handleChange}

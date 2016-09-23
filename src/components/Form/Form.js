@@ -1,8 +1,5 @@
 import React from 'react';
-import Input from './Input';
-import $ from 'jquery';
 import Spinner from './Spinner';
-import errorMessages from '../../helpers/errorMessages';
 
 class Form extends React.Component {
 
@@ -23,16 +20,26 @@ class Form extends React.Component {
         });
     }
 
+    renderMessage() {
+        var success = this.props.formState.successMessage;
+        var error = this.props.formState.errorMessage;
+        if (error + success === '') return;
+        var alertClass = success !== '' ? 'success' : 'danger';
+        return (<div id={this.props.id + '-form-message'} className={'alert alert-' + alertClass}>
+            {error || success}
+        </div>)
+    }
+
     render() {
         return (
             <div>
-                <form onSubmit={this.props.handleSubmitForm.bind(this)}>
-                        <div>{this.props.formState.successMessage}</div>
-                        <div>{this.props.formState.errorMessage}</div>
-                        {this.childrenWithProps()}
-                        <button className="btn btn-default" type="submit">Submit</button>
-                        <Spinner show={this.props.formState.xhrProcessing}/>
+                <form id={this.props.id} onSubmit={this.props.handleSubmitForm.bind(this)}>
+                    {this.childrenWithProps()}
+                    <button className="btn btn-default" type="submit">Submit</button>
+                    <Spinner show={this.props.formState.xhrProcessing}/>
+                    <br/>
                 </form>
+                {this.renderMessage()}
             </div>
         )
     }

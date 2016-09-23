@@ -20,9 +20,11 @@ class Table extends React.Component {
         return tds;
     }
 
+
     renderRows() {
         var _this = this;
-        if (!this.props.data) {
+        // TODO: Handle no data scenarios better
+        if (!this.props.data || this.props.data.length === 0) {
             return (<tr>
                 <td>No data</td>
             </tr>);

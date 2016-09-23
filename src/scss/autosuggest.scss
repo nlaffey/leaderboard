@@ -6,9 +6,11 @@
       list-style-type: none;
     }
 
-    li:hover ,li:focus{
-      background-color: red;
+    li.active {
+      background-color: #ddd;
     }
-
+    .suggestionName {
+      padding: 5px;
+    }
   }
 }

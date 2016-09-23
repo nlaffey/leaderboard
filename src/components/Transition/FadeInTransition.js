@@ -7,8 +7,8 @@ class FadeInTransition extends React.Component {
         return <ReactCSSTransitionGroup
             transitionName="fadein"
             transitionAppear={true}
-            transitionAppearTimeout={0}
-            transitionEnterTimeout={0}
+            transitionAppearTimeout={10000}
+            transitionEnterTimeout={10000}
             transitionLeaveTimeout={300}>
             {this.props.children}
         </ReactCSSTransitionGroup>

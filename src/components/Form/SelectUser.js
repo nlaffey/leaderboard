@@ -19,6 +19,13 @@ class SelectUser extends React.Component {
         };
     }
 
+
+    renderError() {
+        var error = this.props.errorMessage;
+        if (error === '') return;
+        return (<div id={this.props.id + '-form-message'} className={'alert alert-danger'}>{error}</div>)
+    }
+
     // Teach Autosuggest how to calculate suggestions for any given input value.
     getSuggestions(change) {
         const inputValue = change.value.trim().toLowerCase();
@@ -39,7 +46,7 @@ class SelectUser extends React.Component {
     // Render the suggestions
     renderSuggestion(suggestion) {
         return (
-            <span>{suggestion.name}</span>
+            <span className="suggestionName">{suggestion.name}</span>
         );
     }
 
@@ -61,9 +68,9 @@ class SelectUser extends React.Component {
     render() {
         return (
             <div>
-                <div>{this.props.errorMessage}</div>
+                {this.renderError()}
                 <label htmlFor={this.props.id}>Name</label>
-                <Autosuggest theme={this.theme}
+                <Autosuggest aria-described-by='test123' theme={this.theme}
                              id={this.props.id}
                              suggestions={this.state.suggestions}
                              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}

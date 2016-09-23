@@ -1,5 +1,6 @@
 @import 'bootstrap';
 @import 'autosuggest';
+@import 'transition';
 
 .display-none {
   display: none;
@@ -8,4 +9,8 @@
 .versus{
   text-align:center;
   font-size:1.2em;
+}
+
+.alert{
+  margin-top:5px;
 }

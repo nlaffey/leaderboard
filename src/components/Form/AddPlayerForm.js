@@ -6,7 +6,7 @@ import errorMessages from '../../helpers/errorMessages';
 
 
 //TODO: Handle null inputs
-class AddUserForm extends React.Component {
+class AddPlayerForm extends React.Component {
     constructor(props) {
         super(props);
 
@@ -15,7 +15,10 @@ class AddUserForm extends React.Component {
             xhrProcessing: false,
             errorMessage: '',
             successMessage: '',
+            nameInvalid: false,
         }
+
+        this.formId = 'AddPlayerForm';
     }
 
     clearMessages() {
@@ -62,6 +65,8 @@ class AddUserForm extends React.Component {
 
             if (response.responseJSON.code === 11000) {
                 message = errorMessages.UNIQUE_NAME;
+                _this.setState({nameInvalid: true});
+
             } else {
                 message = errorMessages.UNKNOWN;
             }
@@ -74,15 +79,21 @@ class AddUserForm extends React.Component {
         })
     }
 
+
     render() {
         return (
             // Passing down the entire state here might be overkill, but I don't see the harm right now.
-            <Form formState={this.state} handleSubmitForm={this.handleSubmit.bind(this)}
-                  handleChange={this.handleChange.bind(this)}>
-                <Input friendlyName="Name" name="playerName"/>
-            </Form>
+            <div>
+                <Form id={this.formId} formState={this.state}
+                      handleSubmitForm={this.handleSubmit.bind(this)}
+                      handleChange={this.handleChange.bind(this)}>
+                    <Input formId={this.formId} className={this.state.nameInvalid ? 'has-error' : ''}
+                           ariaInvalid={this.state.nameInvalid}
+                           friendlyName="Name" name="playerName"/>
+                </Form>
+            </div>
         );
     }
 }
 
-export default AddUserForm;
+export default AddPlayerForm;

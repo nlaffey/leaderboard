@@ -4,8 +4,6 @@ import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 // Views
 import Leaderboard from './components/Content/Leaderboard';
-import Players from './components/Content/Players';
-import NewGame from './components/Content/NewGame';
 
 // Static resources to be inserted by webkit in the bundle.js file. We don't reference these anywhere else.
 import Html from '../src/html/index.html';

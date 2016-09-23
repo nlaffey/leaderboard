@@ -20,7 +20,7 @@ class Contract {
     }
 
     getGameResults(callback) {
-        return callback(GameResults.find({}).exec());
+        return callback(GameResults.find({}).sort({timestamp: 1}).exec());
     }
 
 
@@ -84,7 +84,7 @@ class Contract {
     }
 
     getPlayers(callback) {
-        return callback(Player.find({}).exec());
+        return callback(Player.find({}).sort({win: -1}).exec());
     }
 
     clearData() {

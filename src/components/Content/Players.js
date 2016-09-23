@@ -33,7 +33,7 @@ class Players extends React.Component {
                                {propName: 'ratio', friendlyName: 'Ratio'}]}/>
                     <button id="clearData" onClick={this.clearData.bind(this)} className="btn btn-danger">Clear data
                     </button>
-                <h3> Add player </h3>
+                <h2> Add player </h2>
                 <AddPlayerForm onSuccess={this.props.handleUpdate}/>
             </div>
         );

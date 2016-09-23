@@ -66,8 +66,9 @@ class Leaderboard extends React.Component {
                 <h1 className="text-center"> Leaderboard </h1>
                 <div key="leaderboard" id="leaderboard">
                     <Players key="players" players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
-                    <Results key="results" results={this.state.results}/>
                     <NewGame key="newgame" players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
+                    <Results key="results" results={this.state.results}/>
+
                 </div>
             </FadeInTransition>
         );

@@ -3,12 +3,12 @@ const express = require('express');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require('./webpack.config.js');
+const config = require('./../webpack.config.js');
 const bodyParser = require('body-parser');
-const db = require('./src/database/database');
+const db = require('./database/database');
 const multer = require('multer'); //middleware for handling multipart/form-data,
 const upload = multer();
-const contract = require('./src/contract/contract');
+const contract = require('./contract/contract');
 
 const dbContract = new contract(db);
 

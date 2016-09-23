@@ -8,6 +8,15 @@ class SelectUser extends React.Component {
         this.state = {
             suggestions: [],
         };
+
+        this.theme = {
+            container: 'autosuggest dropdown',
+            containerOpen: 'dropdown open',
+            input: 'form-control',
+            suggestionsContainer: 'dropdown-menu',
+            suggestion: '',
+            suggestionFocused: 'active'
+        };
     }
 
     // Teach Autosuggest how to calculate suggestions for any given input value.
@@ -54,7 +63,8 @@ class SelectUser extends React.Component {
             <div>
                 <div>{this.props.errorMessage}</div>
                 <label htmlFor={this.props.id}>Name</label>
-                <Autosuggest id={this.props.id}
+                <Autosuggest theme={this.theme}
+                             id={this.props.id}
                              suggestions={this.state.suggestions}
                              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}
                              onSuggestionsClearRequested={this.onSuggestionsClearRequested.bind(this)}

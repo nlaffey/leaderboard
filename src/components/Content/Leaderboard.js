@@ -60,11 +60,10 @@ class Leaderboard extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2>Leader board</h2>
+            <div id="leaderboard">
+                <Players players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
                 <Results results={this.state.results}/>
                 <NewGame players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
-                <Players players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
             </div>
         );
     }

@@ -27,11 +27,11 @@ class Form extends React.Component {
         return (
             <div>
                 <form onSubmit={this.props.handleSubmitForm.bind(this)}>
-                    <div>{this.props.formState.successMessage}</div>
-                    <div>{this.props.formState.errorMessage}</div>
-                    {this.childrenWithProps()}
-                    <button type="submit">Submit</button>
-                    <Spinner show={this.props.formState.xhrProcessing}/>
+                        <div>{this.props.formState.successMessage}</div>
+                        <div>{this.props.formState.errorMessage}</div>
+                        {this.childrenWithProps()}
+                        <button className="btn btn-default" type="submit">Submit</button>
+                        <Spinner show={this.props.formState.xhrProcessing}/>
                 </form>
             </div>
         )

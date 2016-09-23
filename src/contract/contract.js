@@ -31,7 +31,7 @@ class Contract {
         if (win == 0) {
             return 0;
         }
-        return win / loss;
+        return (win / loss).toFixed(2);
     }
 
     addGameResults(data, callback) {

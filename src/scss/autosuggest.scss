@@ -1,0 +1,14 @@
+.autosuggest {
+  .dropdown-menu {
+    ul {
+      padding: 5px;
+      margin: 0;
+      list-style-type: none;
+    }
+
+    li:hover ,li:focus{
+      background-color: red;
+    }
+
+  }
+}

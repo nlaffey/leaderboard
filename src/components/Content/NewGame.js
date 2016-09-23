@@ -130,10 +130,9 @@ class NewGame extends React.Component {
         const team1 = 1;
         const team2 = 2;
         return (
-            <div>
-                <h2>Enter new game information below</h2>
+            <div id="newGame">
+                <h2>New game</h2>
                 <form>
-                    <h3>Team 1</h3>
                     <SelectPlayer id="SelectPlayerTeam1"
                                   selectedPlayer={this.state.playerTeam1}
                                   players={this.props.players}
@@ -144,8 +143,7 @@ class NewGame extends React.Component {
                                    friendlyName="Winner"
                                    handleChange={this.handleWinnerChange.bind(this, team1)}
                                    checked={this.state.playerTeam1WL === 'W'}/>
-                    <div> VS</div>
-                    <h3>Team 2</h3>
+                    <div className="versus">Versus</div>
                     <SelectPlayer id="SelectPlayerTeam2"
                                   selectedPlayer={this.state.playerTeam2}
                                   players={this.props.players}
@@ -156,7 +154,7 @@ class NewGame extends React.Component {
                                    friendlyName="Winner"
                                    handleChange={this.handleWinnerChange.bind(this, team2)}
                                    checked={this.state.playerTeam2WL === 'W'}/>
-                    <button onClick={this.handleSubmitForm.bind(this)}>Submit</button>
+                    <input type="submit" value="Submit" className="btn btn-default" onClick={this.handleSubmitForm.bind(this)}/>
                     <div>{this.state.successMessage}</div>
                     <div>{this.state.errorMessage}</div>
                 </form>

@@ -8,12 +8,15 @@ class Results extends React.Component {
 
     render() {
         return (
-            <Table data={this.props.results}
-                   columns={[
-                       {propName: 'timestamp', friendlyName: 'Date'},
-                       {propName: 'winners', friendlyName: 'Winner'},
-                       {propName: 'losers', friendlyName: 'Loser'},
-                   ]}/>
+            <div id="results">
+                <h2>Game results</h2>
+                <Table data={this.props.results}
+                       columns={[
+                           {propName: 'timestamp', friendlyName: 'Date'},
+                           {propName: 'winners', friendlyName: 'Winner'},
+                           {propName: 'losers', friendlyName: 'Loser'},
+                       ]}/>
+            </div>
         );
     }
 }

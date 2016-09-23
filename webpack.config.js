@@ -41,7 +41,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.ico$/i,
+                test: /\.(ico|eot|woff2?|ttf)$/i,
                 loader: 'file?name=img/[name].[ext]'
             }
         ]

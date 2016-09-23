@@ -11,7 +11,8 @@ class Input extends React.Component {
             <input id={this.props.name}
                    name={this.props.name}
                    value={this.props.value}
-                   onChange={this.props.handleChange}/>
+                   onChange={this.props.handleChange}
+                   className="form-control"/>
         </div>)
     }
 

@@ -44,7 +44,7 @@ class Table extends React.Component {
 
     render() {
         return (
-            <table>
+            <table className="table table-striped table-bordered table-condensed">
                 <thead>
                 <tr>{this.renderTh(this.props.columns)}</tr>
                 </thead>

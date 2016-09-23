@@ -1,9 +1,11 @@
-@import '../../node_modules/node-normalize-scss/normalize';
+@import 'bootstrap';
+@import 'autosuggest';
 
 .display-none {
   display: none;
 }
 
-.form-group{
-  display:inline-block;
+.versus{
+  text-align:center;
+  font-size:1.2em;
 }

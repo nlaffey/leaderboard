@@ -45,9 +45,9 @@ if (isDeveloping) {
         res.end();
     });
 } else {
-    app.use(express.static('/build'));
+    app.use(express.static('./build'));
     app.get('/', function response(req, res) {
-        res.sendFile(path.join('/build/index.html'));
+        res.sendFile(path.join('./build/index.html'));
     });
 }
 

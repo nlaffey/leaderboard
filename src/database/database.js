@@ -13,7 +13,7 @@ mongoose.connect(dbAddress);
 
 dbConnection.on('error', console.error.bind(console, 'connection error:'));
 dbConnection.once('open', ()=> {
-    console.log('Successfully connected to dbConnection at: ' + dbAddress);
+    console.log('Successfully connected to DB at: ' + dbAddress);
 });
 
 module.exports = dbConnection;

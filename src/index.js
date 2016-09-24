@@ -10,7 +10,7 @@ import Html from './html/index.html';
 import Favicon from './img/favicon.ico';
 import Styles from './scss/style.scss';
 
-// Frontend routing
+// Frontend routing. We only have one route right now but I'll leave it in case we have more.
 import App from './components/App';
 ReactDOM.render((<Router history={hashHistory}>
         <Route path="/" component={App}>

@@ -9,21 +9,20 @@ const dbConnection = require('./database/database');
 const multer = require('multer'); //middleware for handling multipart/form-data,
 const upload = multer();
 const contract = require('./contract/contract');
-var basicAuth = require('basic-auth-connect');
-
+const basicAuth = require('basic-auth-connect');
 const dbContract = new contract(dbConnection);
-
-// TODO: Review why process.env.NODE_ENV is undefined here
-const isDeveloping = process.env.NODE_ENV !== 'production';
 const app = express();
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
+const isDeveloping = process.env.NODE_ENV !== 'production';
 
+// for parsing application/json
+app.use(bodyParser.json());
+// for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: true}));
 // Authenticator
 app.use(basicAuth('hire', 'nickLaffey'));
 
 if (isDeveloping) {
-    console.log('in development mode');
+    console.log('Running in development mode.');
     const compiler = webpack(config);
     const middleware = webpackMiddleware(compiler, {
         publicPath: config.output.publicPath,
@@ -46,20 +45,21 @@ if (isDeveloping) {
     });
 } else {
     app.use(express.static('./build'));
-    app.get('/', function response(req, res) {
+    app.get('*', function response(req, res) {
         res.sendFile(path.join('./build/index.html'));
     });
 }
 
 
-const DUPLICATE_KEY_ERROR = 11000;
+// Routes
 
 app.post('/addPlayer', upload.array(), function (req, res) {
     dbContract.addPlayer(req.body, function (promise) {
         promise.then(function () {
             res.send({success: true});
         }).catch(function (err) {
-            if (err.code == DUPLICATE_KEY_ERROR) {
+            // Duplicate key error
+            if (err.code == 11000) {
                 res.status(400);
                 res.send({success: false, error: err});
             } else {
@@ -92,7 +92,6 @@ app.get('/gameResults', function (req, res) {
     });
 });
 
-
 app.get('/getPlayers', function (req, res) {
     dbContract.getPlayers(function (promise) {
         promise.then(function (players) {
@@ -104,17 +103,16 @@ app.get('/getPlayers', function (req, res) {
     });
 });
 
-
 app.get('/clearData', function (req, res) {
     dbContract.clearData();
     res.send('database cleared');
 });
 
-
+// Start listening...
 const port = isDeveloping ? 3000 : process.env.PORT;
 app.listen(port, function onStart(err) {
     if (err) {
         console.log(err);
     }
-    console.info('==> 🌎 Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
+    console.info('Listening on port %s. Open http://localhost:%s/ in your browser.', port, port);
 });

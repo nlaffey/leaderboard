@@ -58,7 +58,7 @@ class AddPlayerForm extends React.Component {
             });
             _this.props.onSuccess();
         });
-        
+
         xhr.fail(function (response) {
             var message = '';
             if (!response.responseJSON || !response.responseJSON.code) {
@@ -85,11 +85,12 @@ class AddPlayerForm extends React.Component {
     render() {
         return (
             // Passing down the entire state here might be overkill, but I don't see the harm right now.
-            <div id="addPlayerForm" className="col-md-6">
+            <div id="addPlayerForm">
                 <h2>Add player</h2>
                 <Form id={this.formId} formState={this.state}
                       handleSubmitForm={this.handleSubmit.bind(this)}
-                      handleChange={this.handleChange.bind(this)}>
+                      handleChange={this.handleChange.bind(this)}
+                      submitValue="Add player">
                     <Input formId={this.formId}
                            className={this.state.nameInvalid ? 'has-error' : ''}
                            ariaInvalid={this.state.nameInvalid}

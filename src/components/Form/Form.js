@@ -35,7 +35,7 @@ class Form extends React.Component {
             <div>
                 <form id={this.props.id} onSubmit={this.props.handleSubmitForm.bind(this)}>
                     {this.childrenWithProps()}
-                    <button className="btn btn-default" type="submit">Submit</button>
+                    <button className="btn btn-default" type="submit">{this.props.submitValue}</button>
                     <Spinner show={this.props.formState.xhrProcessing}/>
                     <br/>
                 </form>

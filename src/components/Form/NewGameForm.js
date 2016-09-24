@@ -124,7 +124,7 @@ class NewGame extends React.Component {
 
     render() {
         return (
-            <div id="newGame" className="col-md-6">
+            <div id="newGame">
                 <h2>Add game</h2>
                 <form>
                     <SelectPlayer id="SelectWinner"

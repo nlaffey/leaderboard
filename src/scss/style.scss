@@ -2,14 +2,6 @@
 @import 'autosuggest';
 @import 'transition';
 
-#players {
-  position: relative;
-  #clearData {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-}
 
 .container {
   margin-bottom: 50px;
@@ -19,9 +11,9 @@
   display: none;
 }
 
-.versus {
-  text-align: center;
-  font-size: 1.2em;
+#clearData {
+  position: relative;
+  top: 20px;
 }
 
 /* Bootstrap override */

@@ -27,14 +27,16 @@ class Players extends React.Component {
     render() {
         return (
             <div id="players" className="col-md-12">
-                <h2>Players</h2>
+                <div className="col-xs-6"><h2>Players</h2></div>
+                <div className="col-xs-6 text-right">
+                    <button id="clearData" onClick={this.clearData.bind(this)} className="btn btn-danger">Clear data
+                    </button>
+                </div>
                 <Table data={this.props.players}
                        columns={[{propName: 'name', friendlyName: 'Name'},
                            {propName: 'win', friendlyName: 'Wins'},
                            {propName: 'loss', friendlyName: 'Losses'},
                            {propName: 'ratio', friendlyName: 'Ratio'}]}/>
-                <button id="clearData" onClick={this.clearData.bind(this)} className="btn btn-danger">Clear data
-                </button>
 
 
             </div>

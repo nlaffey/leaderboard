@@ -25,7 +25,7 @@ class AddPlayerForm extends React.Component {
         this.setState({
             errorMessage: '',
             successMessage: '',
-            xhrProcessing: true
+            xhrProcessing: false,
         });
     }
 
@@ -37,12 +37,17 @@ class AddPlayerForm extends React.Component {
 
 
     handleSubmit(event) {
-        var _this = this;
         event.preventDefault();
-        var data = this.state;
-
+        var _this = this;
         this.clearMessages();
-        var xhr = $.post('/addPlayer', data);
+
+        if (this.state.playerName == '') {
+            this.setState({errorMessage: errorMessages.NO_NAME_ENTERED})
+            return;
+        }
+
+        this.setState({xhrProcessing: true});
+        var xhr = $.post('/addPlayer', {playerName: this.state.playerName});
 
         xhr.done(function (response) {
             if (response.name) {
@@ -90,7 +95,9 @@ class AddPlayerForm extends React.Component {
                       handleChange={this.handleChange.bind(this)}>
                     <Input formId={this.formId} className={this.state.nameInvalid ? 'has-error' : ''}
                            ariaInvalid={this.state.nameInvalid}
-                           friendlyName="Name" name="playerName"/>
+                           friendlyName="Name"
+                           name="playerName"
+                    />
                 </Form>
             </div>
         );

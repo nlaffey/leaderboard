@@ -4,8 +4,6 @@ import Input from './Input';
 import $ from 'jquery';
 import errorMessages from '../../helpers/errorMessages';
 
-
-//TODO: Handle null inputs
 class AddPlayerForm extends React.Component {
     constructor(props) {
         super(props);
@@ -60,12 +58,13 @@ class AddPlayerForm extends React.Component {
         });
 
         xhr.fail(function (response) {
+            debugger;
             var message = '';
-            if (!response.responseJSON || !response.responseJSON.code) {
+            if (!response.responseJSON || !response.responseJSON.error || !response.responseJSON.error.code) {
                 _this.setState({errorMessage: errorMessages.UNKNOWN});
             }
 
-            if (response.responseJSON.code === 11000) {
+            if (response.responseJSON.error.code === 11000) {
                 message = errorMessages.UNIQUE_NAME;
                 _this.setState({nameInvalid: true});
 

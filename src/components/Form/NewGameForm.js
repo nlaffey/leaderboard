@@ -1,8 +1,8 @@
 import React from 'react';
 import SelectPlayer from './SelectUser';
 import $ from 'jquery';
-import InputCheckbox from './InputCheckbox';
 import errors from '../../helpers/errorMessages';
+import Spinner from './Spinner';
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -16,7 +16,8 @@ class NewGame extends React.Component {
             loserErrorMessage: '',
             successMessage: '',
             errorMessage: '',
-        }
+            xhrProcessing: false,
+        };
 
         this.id = 'newGameForm';
 
@@ -70,9 +71,9 @@ class NewGame extends React.Component {
                 winner: this.state.winner,
                 loser: this.state.loser
             }
-        }
+        };
 
-
+        _this.setState({xhrProcessing: true});
         var xhr = $.post('/gameResults', data);
 
         xhr.done(function () {
@@ -92,7 +93,7 @@ class NewGame extends React.Component {
         });
 
         xhr.always(function () {
-
+            _this.setState({xhrProcessing: false});
         });
 
     }
@@ -142,12 +143,13 @@ class NewGame extends React.Component {
                     <button className="btn btn-default"
                             onClick={this.handleSubmitForm.bind(this)}>Add game
                     </button>
+                    <Spinner show={this.state.xhrProcessing} />
                     {this.renderMessage()}
                 </form>
             </div>
 
-        );
+    );
     }
-}
+    }
 
-export default NewGame;
+    export default NewGame;

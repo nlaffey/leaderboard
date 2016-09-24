@@ -5,7 +5,7 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./../webpack.config.js');
 const bodyParser = require('body-parser');
-const dbConnection = require('./database/database');
+const dbConnection = require('./dbConnection');
 const multer = require('multer'); //middleware for handling multipart/form-data,
 const upload = multer();
 const contract = require('./contract');
@@ -45,7 +45,7 @@ if (isDeveloping) {
     });
 } else {
     app.use(express.static('./build'));
-    app.get('*', function response(req, res) {
+    app.get('/', function response(req, res) {
         res.sendFile(path.join('./build/index.html'));
     });
 }
@@ -107,6 +107,7 @@ app.get('/clearData', function (req, res) {
     dbContract.clearData();
     res.send('database cleared');
 });
+
 
 // Start listening...
 const port = isDeveloping ? 3000 : process.env.PORT;

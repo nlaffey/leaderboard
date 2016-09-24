@@ -39,7 +39,8 @@ class AddPlayerForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        var _this = this;
+        var _this = this,
+            playerName = this.state.playerName;
         this.clearMessagesAndErrors();
 
         if (this.state.playerName == '') {
@@ -50,19 +51,14 @@ class AddPlayerForm extends React.Component {
         this.setState({xhrProcessing: true});
         var xhr = $.post('/addPlayer', {playerName: this.state.playerName});
 
-        xhr.done(function (response) {
-            if (response.name) {
-                _this.setState({
-                    successMessage: response.name.trim() + ' was added!',
-                    playerName: ''
-                });
-                _this.props.onSuccess();
-            } else {
-                _this.setState({errorMessage: errorMessages.UNKNOWN})
-            }
-
+        xhr.done(function () {
+            _this.setState({
+                successMessage: playerName + ' was added!',
+                playerName: ''
+            });
+            _this.props.onSuccess();
         });
-
+        
         xhr.fail(function (response) {
             var message = '';
             if (!response.responseJSON || !response.responseJSON.code) {

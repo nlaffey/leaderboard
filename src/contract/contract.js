@@ -1,9 +1,9 @@
 'use strict';
 
 const Player = require('./../models/Player');
-const GameResults = require('./../models/GameResult');
+const GameResult = require('./../models/GameResult');
 const Promise = require('bluebird');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
 
@@ -20,7 +20,7 @@ class Contract {
     }
 
     getGameResults(callback) {
-        return callback(GameResults.find({}).sort({timestamp: 1}).exec());
+        return callback(GameResult.find({}).sort({timestamp: 1}).exec());
     }
 
 
@@ -35,51 +35,49 @@ class Contract {
     }
 
     addGameResults(data, callback) {
-        var _this = this;
-        var players = data.players;
-        var getDocPromises = [];
-        var saveDocPromises = [];
+        const _this = this;
+        const postedPlayers = data.players;
 
-        for (var i = 0; i < players.length; i++) {
-            let name = players[i].name;
-            var query = Player.findOne({name: name});
-            getDocPromises.push(query);
-        }
-
-        // Process all getDocument querys
-        Promise.all(getDocPromises).spread(function () {
-            var gameResults = new GameResults();
-
-            for (var i = 0; i < arguments.length; i++) {
-                let doc = arguments[i];
-                let result = players[i].result;
-                if (result == 'W') {
-                    gameResults.winners.push(doc.name);
-                    doc.win += 1;
-                }
-                else if (result == 'L') {
-                    gameResults.losers.push(doc.name);
-                    doc.loss += 1;
-                }
-
-                doc.ratio = _this.calcRatio(doc.win, doc.loss);
-
-                saveDocPromises.push(doc.save());
-            }
-
-            saveDocPromises.push(gameResults.save());
-
-            Promise.all(saveDocPromises).spread(function () {
-                callback(arguments);
-            });
+        const playerQuery = Player.find({
+            name: {$in: [postedPlayers.winner, postedPlayers.loser]}
         });
 
+        const updatePlayers = playerQuery.then(function (players) {
 
+            // Update both our gameResults and player documents.
+
+            const gameResult = new GameResult();
+            const savedDocs = [];
+
+            for (var i = 0; i < players.length; i++) {
+
+                let player = players[i];
+
+                if (player.name === postedPlayers.winner) {
+                    gameResult.winner = player.name;
+                    player.win += 1;
+                }
+                else if (player.name === postedPlayers.loser) {
+                    gameResult.loser = player.name;
+                    player.loss += 1;
+                }
+
+                player.ratio = _this.calcRatio(player.win, player.loss);
+                savedDocs.push(player.save());
+            }
+
+            savedDocs.push(gameResult.save());
+            return Promise.all(savedDocs);
+        }).catch(function () {
+            throw Error('There was a problem updating the game results.');
+        });
+
+        callback(updatePlayers);
     }
 
     addPlayer(data, callback) {
-        var player = new Player({name: data.playerName.trim().substring(0,50)});
-        var promise = player.save();
+        const player = new Player({name: data.playerName.trim().substring(0, 50)});
+        const promise = player.save();
         callback(promise);
     }
 

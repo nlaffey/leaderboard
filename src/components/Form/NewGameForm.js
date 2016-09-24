@@ -10,12 +10,10 @@ class NewGame extends React.Component {
 
         this.state = {
             players: [],
-            playerTeam1: '',
-            playerTeam2: '',
-            playerTeam1WL: 'L',
-            playerTeam2WL: 'L',
-            playerTeam1ErrorMessage: '',
-            playerTeam2ErrorMessage: '',
+            winner: '',
+            loser: '',
+            winnerErrorMessage: '',
+            loserErrorMessage: '',
             successMessage: '',
             errorMessage: '',
         }
@@ -36,29 +34,25 @@ class NewGame extends React.Component {
     formInvalid() {
         var invalid = false;
 
-        var player1 = this.state.playerTeam1;
-        var player2 = this.state.playerTeam2;
-        var player1Err = 'playerTeam1ErrorMessage';
-        var player2Err = 'playerTeam2ErrorMessage';
+        var winner = this.state.winner;
+        var loser = this.state.loser;
+        var winnerErrorMessage = 'winnerErrorMessage';
+        var loserErrorMessage = 'loserErrorMessage';
 
-        if (player1 == '' || player2 == '') {
+        if (winner == '' || loser == '') {
             return invalid = true;
         }
 
-        if (this.playerDoesNotExist(player1)) {
-            this.setState({[player1Err]: errors.INVALID_NAME});
+        if (this.playerDoesNotExist(winner)) {
+            this.setState({[winnerErrorMessage]: errors.INVALID_NAME});
             invalid = true;
         }
-        if (this.playerDoesNotExist(player2)) {
-            this.setState({[player2Err]: errors.INVALID_NAME});
+        if (this.playerDoesNotExist(loser)) {
+            this.setState({[loserErrorMessage]: errors.INVALID_NAME});
             invalid = true;
         }
-        if (player1 == player2) {
-            this.setState({[player2Err]: errors.SAME_PLAYER});
-            invalid = true;
-        }
-        if (this.state.playerTeam1WL + this.state.playerTeam2WL == 'LL') {
-            this.setState({[player1Err]: errors.NO_WINNER});
+        if (winner == loser) {
+            this.setState({[loserErrorMessage]: errors.SAME_PLAYER});
             invalid = true;
         }
         return invalid;
@@ -72,13 +66,10 @@ class NewGame extends React.Component {
         if (this.formInvalid()) return;
 
         var data = {
-            players: [{
-                name: this.state.playerTeam1,
-                result: this.state.playerTeam1WL,
-            }, {
-                name: this.state.playerTeam2,
-                result: this.state.playerTeam2WL,
-            }]
+            players: {
+                winner: this.state.winner,
+                loser: this.state.loser
+            }
         }
 
 
@@ -87,10 +78,8 @@ class NewGame extends React.Component {
         xhr.done(function () {
             _this.setState({
                 successMessage: 'New game added successfully.',
-                playerTeam1: '',
-                playerTeam2: '',
-                playerTeam1WL: 'L',
-                playerTeam2WL: 'L',
+                winner: '',
+                loser: '',
             });
             _this.props.handleUpdate();
         });
@@ -110,22 +99,16 @@ class NewGame extends React.Component {
 
     clearMessages() {
         this.setState({
-            playerTeam2ErrorMessage: errors.EMPTY,
-            playerTeam1ErrorMessage: errors.EMPTY,
+            loserErrorMessage: errors.EMPTY,
+            winnerErrorMessage: errors.EMPTY,
             successMessage: '',
             errorMessage: '',
         });
 
     }
 
-    handlePlayerChange(team, proxy, change) {
-        this.setState({['playerTeam' + team]: change.newValue});
-    }
-
-    handleWinnerChange(team, event) {
-        var checked = event.target.checked
-        this.setState({playerTeam1WL: team == 1 && checked === true ? 'W' : 'L'});
-        this.setState({playerTeam2WL: team == 2 && checked === true ? 'W' : 'L'});
+    handlePlayerChange(result, proxy, change) {
+        this.setState({[result]: change.newValue});
     }
 
     renderMessage() {
@@ -140,35 +123,25 @@ class NewGame extends React.Component {
 
 
     render() {
-        const team1 = 1;
-        const team2 = 2;
         return (
             <div id="newGame" className="col-md-6">
                 <h2>Add game</h2>
                 <form>
-                    <SelectPlayer id="SelectPlayerTeam1"
-                                  selectedPlayer={this.state.playerTeam1}
+                    <SelectPlayer id="SelectWinner"
+                                  label="Winner"
+                                  selectedPlayer={this.state.winner}
                                   players={this.props.players}
-                                  handlePlayerChange={this.handlePlayerChange.bind(this, team1)}
-                                  errorMessage={this.state.playerTeam1ErrorMessage}/>
-
-                    <InputCheckbox id="WinnerPlayerTeam1"
-                                   friendlyName="Winner"
-                                   handleChange={this.handleWinnerChange.bind(this, team1)}
-                                   checked={this.state.playerTeam1WL === 'W'}/>
-                    <div className="text-center">VERSUS</div>
-                    <SelectPlayer id="SelectPlayerTeam2"
-                                  selectedPlayer={this.state.playerTeam2}
+                                  handlePlayerChange={this.handlePlayerChange.bind(this, 'winner')}
+                                  errorMessage={this.state.winnerErrorMessage}/>
+                    <SelectPlayer id="SelectLoser"
+                                  label="Loser"
+                                  selectedPlayer={this.state.loser}
                                   players={this.props.players}
-                                  handlePlayerChange={this.handlePlayerChange.bind(this, team2)}
-                                  errorMessage={this.state.playerTeam2ErrorMessage}/>
-
-                    <InputCheckbox id="WinnerPlayerTeam2"
-                                   friendlyName="Winner"
-                                   handleChange={this.handleWinnerChange.bind(this, team2)}
-                                   checked={this.state.playerTeam2WL === 'W'}/>
+                                  handlePlayerChange={this.handlePlayerChange.bind(this, 'loser')}
+                                  errorMessage={this.state.loserErrorMessage}/>
                     <button className="btn btn-default"
-                            onClick={this.handleSubmitForm.bind(this)}>Add game</button>
+                            onClick={this.handleSubmitForm.bind(this)}>Add game
+                    </button>
                     {this.renderMessage()}
                 </form>
             </div>

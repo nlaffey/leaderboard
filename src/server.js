@@ -56,24 +56,28 @@ const DUPLICATE_KEY_ERROR = 11000;
 
 app.post('/addPlayer', upload.array(), function (req, res) {
     dbContract.addPlayer(req.body, function (promise) {
-        promise.then(function (response) {
-            res.send(response);
+        promise.then(function () {
+            res.send({success: true});
         }).catch(function (err) {
             if (err.code == DUPLICATE_KEY_ERROR) {
                 res.status(400);
-                res.send(err);
+                res.send({success: false, error: err});
             } else {
                 res.status(500);
-                res.send(err);
+                res.send({success: false, error: err});
             }
         });
     });
 });
 
 app.post('/gameResults', upload.array(), function (req, res) {
-    dbContract.addGameResults(req.body, function (result) {
-        // TODO: Error handling.
-        res.send(result);
+    dbContract.addGameResults(req.body, function (promise) {
+        promise.then(function () {
+            res.send({success: true})
+        }).catch(function (err) {
+            res.status(500);
+            res.send({success: false, error: err});
+        });
     });
 });
 
@@ -83,7 +87,7 @@ app.get('/gameResults', function (req, res) {
             res.send(results)
         }).catch(function (err) {
             res.status(500);
-            res.send(err);
+            res.send({error: err});
         });
     });
 });
@@ -95,7 +99,7 @@ app.get('/getPlayers', function (req, res) {
             res.send(players);
         }).catch(function (err) {
             res.status(500);
-            res.send(err);
+            res.send({error: err});
         });
     });
 });

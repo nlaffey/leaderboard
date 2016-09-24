@@ -6,7 +6,7 @@ class SelectUser extends React.Component {
         super();
 
         this.themeDefaults = {
-            container: 'autosuggest dropdown ',
+            container: 'autosuggest dropdown form-group ',
             containerOpen: 'dropdown open',
             input: 'form-control',
             suggestionsContainer: 'dropdown-menu',
@@ -81,7 +81,7 @@ class SelectUser extends React.Component {
         return (
             <div>
                 {this.renderError()}
-                <label htmlFor={this.props.id}>Name</label>
+                <label htmlFor={this.props.id}>{this.props.label}</label>
                 <Autosuggest theme={this.getTheme()}
                              id={this.props.id}
                              suggestions={this.state.suggestions}

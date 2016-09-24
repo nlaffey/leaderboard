@@ -9,6 +9,7 @@ const dbConnection = require('./database/database');
 const multer = require('multer'); //middleware for handling multipart/form-data,
 const upload = multer();
 const contract = require('./contract/contract');
+var basicAuth = require('basic-auth-connect');
 
 const dbContract = new contract(dbConnection);
 
@@ -17,6 +18,9 @@ const isDeveloping = process.env.NODE_ENV !== 'production';
 const app = express();
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
+
+// Authenticator
+app.use(basicAuth('hire', 'nickLaffey'));
 
 if (isDeveloping) {
     const compiler = webpack(config);

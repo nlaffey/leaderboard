@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/nlaffey/leaderboard/",
   "dependencies": {
+    "basic-auth-connect": "^1.0.0",
     "bluebird": "^3.4.6"
   },
   "devDependencies": {

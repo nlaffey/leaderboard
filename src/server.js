@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-w
 app.use(basicAuth('hire', 'nickLaffey'));
 
 if (isDeveloping) {
+    console.log('in development mode');
     const compiler = webpack(config);
     const middleware = webpackMiddleware(compiler, {
         publicPath: config.output.publicPath,
@@ -44,9 +45,9 @@ if (isDeveloping) {
         res.end();
     });
 } else {
-    app.use(express.static(__dirname + '/build'));
+    app.use(express.static('/build'));
     app.get('/', function response(req, res) {
-        res.sendFile(path.join(__dirname, 'build/index.html'));
+        res.sendFile(path.join('/build/index.html'));
     });
 }
 

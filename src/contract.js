@@ -1,7 +1,7 @@
 'use strict';
 
-const Player = require('./../models/Player');
-const GameResult = require('./../models/GameResult');
+const Player = require('./models/Player');
+const GameResult = require('./models/GameResult');
 const Promise = require('bluebird');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');

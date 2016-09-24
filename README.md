@@ -22,6 +22,8 @@ Navigate to the root of the project and run `npm `
 
 * Add login screen and authentication using passport
 * Allow users to create/manage multiple leaderboards
+* Track what users added game results.
 * Player edit/delete feature
+* Game results edit/delete feature
 * Allow adding of multiple players to game results (teams)
 * Some styling... (eek I know it's boring looking)

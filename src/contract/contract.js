@@ -20,7 +20,7 @@ class Contract {
     }
 
     getGameResults(callback) {
-        return callback(GameResult.find({}).sort({timestamp: 1}).exec());
+        return callback(GameResult.find({}).sort({timestamp: -1}).exec());
     }
 
 

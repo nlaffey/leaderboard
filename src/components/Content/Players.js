@@ -27,7 +27,7 @@ class Players extends React.Component {
     render() {
         return (
             <div id="players" className="col-md-12">
-                <div className="col-xs-6"><h2>Players</h2></div>
+                <div className="col-xs-6 table-top-header"><h2>Players</h2></div>
                 <div className="col-xs-6 text-right">
                     <button id="clearData" onClick={this.clearData.bind(this)} className="btn btn-danger">Clear data
                     </button>

@@ -99,6 +99,7 @@ class AddPlayerForm extends React.Component {
                            maxLength="50"
                            minLength="2"
                            required={true}
+                           placeholder="Enter new players name"
                     />
                 </Form>
             </div>

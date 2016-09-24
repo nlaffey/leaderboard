@@ -2,7 +2,6 @@
 @import 'autosuggest';
 @import 'transition';
 
-
 .container {
   margin-bottom: 50px;
 }
@@ -16,7 +15,22 @@
   top: 20px;
 }
 
-/* Bootstrap override */
+// Don't add padding to our nested columns
+.col-md-9 .col-md-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#players {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.table-top-header {
+  padding-left: 0;
+}
+
+// Bootstrap override
 .alert {
   margin-top: 5px;
   margin-bottom: 10px;

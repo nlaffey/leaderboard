@@ -8,7 +8,8 @@
     "dev-server": "webpack-dev-server",
     "build": "webpack",
     "build-production": "NODE_ENV=production webpack -p ",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "postInstall": "NODE_ENV=production webpack -p "
   },
   "jest": {
     "moduleNameMapper": {

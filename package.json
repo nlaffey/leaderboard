@@ -1,5 +1,5 @@
 {
-  "name": "minimal-react-kit",
+  "name": "leaderboard",
   "version": "1.0.0",
   "description": "A win/loss tracking app",
   "main": "index.js",

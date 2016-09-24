@@ -27,3 +27,5 @@ Navigate to the root of the project and run `npm `
 * Game results edit/delete feature
 * Allow adding of multiple players to game results (teams)
 * Some styling... (eek I know it's boring looking)
+* Add more inputs for game information (score, notes , etc)
+* Testing, I had intentions of doing testing with Jest but I ran out of time

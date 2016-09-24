@@ -5,20 +5,29 @@ class SelectUser extends React.Component {
     constructor() {
         super();
 
-        this.state = {
-            suggestions: [],
-        };
-
-        this.theme = {
-            container: 'autosuggest dropdown',
+        this.themeDefaults = {
+            container: 'autosuggest dropdown ',
             containerOpen: 'dropdown open',
             input: 'form-control',
             suggestionsContainer: 'dropdown-menu',
             suggestion: '',
             suggestionFocused: 'active'
-        };
+        }
+
+        this.state = {
+            suggestions: []
+        }
+
     }
 
+    getTheme() {
+        var theme = this.themeDefaults,
+            container = theme.container,
+            validationClass = this.props.errorMessage !== '' ? 'has-error' : '';
+
+        theme.container = container.replace(container, container + validationClass);
+        return theme;
+    }
 
     renderError() {
         var error = this.props.errorMessage;
@@ -56,21 +65,24 @@ class SelectUser extends React.Component {
         this.setState({
             suggestions: this.getSuggestions(value)
         });
-    };
+    }
+    ;
 
     // Autosuggest will call this function every time you need to clear suggestions.
     onSuggestionsClearRequested() {
         this.setState({
             suggestions: []
         });
-    };
+    }
+    ;
 
     render() {
+        console.log('rendering');
         return (
             <div>
                 {this.renderError()}
                 <label htmlFor={this.props.id}>Name</label>
-                <Autosuggest aria-described-by='test123' theme={this.theme}
+                <Autosuggest theme={this.getTheme()}
                              id={this.props.id}
                              suggestions={this.state.suggestions}
                              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}
@@ -87,4 +99,6 @@ class SelectUser extends React.Component {
     }
 }
 
-export default SelectUser;
+export
+default
+SelectUser;

@@ -21,11 +21,12 @@ class AddPlayerForm extends React.Component {
         this.formId = 'AddPlayerForm';
     }
 
-    clearMessages() {
+    clearMessagesAndErrors() {
         this.setState({
             errorMessage: '',
             successMessage: '',
             xhrProcessing: false,
+            nameInvalid: false
         });
     }
 
@@ -39,7 +40,7 @@ class AddPlayerForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         var _this = this;
-        this.clearMessages();
+        this.clearMessagesAndErrors();
 
         if (this.state.playerName == '') {
             this.setState({errorMessage: errorMessages.NO_NAME_ENTERED})

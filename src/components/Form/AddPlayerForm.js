@@ -58,7 +58,6 @@ class AddPlayerForm extends React.Component {
         });
 
         xhr.fail(function (response) {
-            debugger;
             var message = '';
             if (!response.responseJSON || !response.responseJSON.error || !response.responseJSON.error.code) {
                 _this.setState({errorMessage: errorMessages.UNKNOWN});
@@ -83,7 +82,6 @@ class AddPlayerForm extends React.Component {
 
     render() {
         return (
-            // Passing down the entire state here might be overkill, but I don't see the harm right now.
             <div id="addPlayerForm">
                 <h2>Add player</h2>
                 <Form id={this.formId} formState={this.state}

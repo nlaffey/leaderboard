@@ -77,7 +77,6 @@ class SelectUser extends React.Component {
     ;
 
     render() {
-        console.log('rendering');
         return (
             <div>
                 {this.renderError()}

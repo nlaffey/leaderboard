@@ -6,7 +6,7 @@ import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 import Leaderboard from './components/Content/Leaderboard';
 
 // Static resources to be inserted by webkit in the bundle.js file. We don't reference these anywhere else.
-import Html from '../src/html/index.html';
+import Html from './html/index.html';
 import Favicon from './img/favicon.ico';
 import Styles from './scss/style.scss';
 

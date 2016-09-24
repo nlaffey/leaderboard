@@ -36,12 +36,15 @@
   "dependencies": {
     "basic-auth-connect": "^1.0.0",
     "bluebird": "^3.4.6",
-    "jquery": "^3.1.0",
     "bootstrap-sass": "^3.3.7",
+    "express": "^4.14.0",
+    "jquery": "^3.1.0",
     "mongoose": "^4.6.1",
     "multer": "^1.2.0",
-    "express": "^4.14.0",
-    "webpack": "^1.13.2"
+    "path": "^0.12.7",
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.1",
+    "webpack-hot-middleware": "^2.12.2"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -68,8 +71,6 @@
     "reactable": "^0.14.0",
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^4.0.2",
-    "style-loader": "^0.13.1",
-    "webpack-dev-middleware": "^1.8.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "style-loader": "^0.13.1"
   }
 }

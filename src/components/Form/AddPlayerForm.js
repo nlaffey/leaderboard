@@ -14,7 +14,7 @@ class AddPlayerForm extends React.Component {
             errorMessage: '',
             successMessage: '',
             nameInvalid: false,
-        }
+        };
 
         this.formId = 'AddPlayerForm';
     }
@@ -42,7 +42,7 @@ class AddPlayerForm extends React.Component {
         this.clearMessagesAndErrors();
 
         if (this.state.playerName == '') {
-            this.setState({errorMessage: errorMessages.NO_NAME_ENTERED})
+            this.setState({errorMessage: errorMessages.NO_NAME_ENTERED});
             return;
         }
 

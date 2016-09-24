@@ -3,4 +3,4 @@ module.exports = function filterData(name, value) {
         value = new Date(value).toLocaleString();
     }
     return value;
-}
+};

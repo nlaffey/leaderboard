@@ -1,6 +1,5 @@
 import React from 'react';
 import Table from '../Table/Table';
-import AddPlayerForm from '../Form/AddPlayerForm';
 import $ from 'jquery';
 
 class Players extends React.Component {
@@ -37,8 +36,6 @@ class Players extends React.Component {
                            {propName: 'win', friendlyName: 'Wins'},
                            {propName: 'loss', friendlyName: 'Losses'},
                            {propName: 'ratio', friendlyName: 'Ratio'}]}/>
-
-
             </div>
         );
     }

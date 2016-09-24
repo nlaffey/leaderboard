@@ -12,7 +12,7 @@ class SelectUser extends React.Component {
             suggestionsContainer: 'dropdown-menu',
             suggestion: '',
             suggestionFocused: 'active'
-        }
+        };
 
         this.state = {
             suggestions: []

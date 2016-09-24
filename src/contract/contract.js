@@ -23,7 +23,6 @@ class Contract {
         return callback(GameResult.find({}).sort({timestamp: -1}).exec());
     }
 
-
     calcRatio(win, loss) {
         if (loss == 0) {
             return win;

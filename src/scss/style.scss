@@ -2,6 +2,7 @@
 @import 'autosuggest';
 @import 'transition';
 
+// When a form is to close to the bottom it feels awkward.
 .container {
   margin-bottom: 50px;
 }
@@ -16,18 +17,9 @@
 }
 
 // Don't add padding to our nested columns
-.col-md-9 .col-md-12 {
+.col-md-9 .col-md-12, #players, .table-top-header {
   padding-left: 0;
   padding-right: 0;
-}
-
-#players {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.table-top-header {
-  padding-left: 0;
 }
 
 // Bootstrap override

@@ -3,7 +3,6 @@ const dbConnection = mongoose.connection;
 const isDeveloping = process.env.NODE_ENV !== 'production';
 
 var dbAddress;
-
 if (isDeveloping) {
     dbAddress = 'mongodb://localhost/leaderboard';
 } else {

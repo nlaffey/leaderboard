@@ -2,9 +2,10 @@ import React from 'react';
 import Results from './Results';
 import $ from 'jquery';
 import Players from './Players';
-import NewGame from '../Form/NewGameForm';
+import NewGameForm from '../Form/NewGameForm';
 import FadeInTransition from '../Transition/FadeInTransition'
 import errorMessages from '../../helpers/errorMessages';
+import AddPlayerForm from '../Form/AddPlayerForm';
 
 class Leaderboard extends React.Component {
     constructor(props) {
@@ -64,10 +65,14 @@ class Leaderboard extends React.Component {
         return (
             <FadeInTransition>
                 <h1 className="text-center"> Leaderboard </h1>
-                <div key="leaderboard" id="leaderboard">
+                <div key="leaderboard" id="leaderboard" className="col-md-12">
                     <Players key="players" players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
-                    <NewGame key="newgame" players={this.state.players} handleUpdate={this.handleUpdate.bind(this)}/>
                     <Results key="results" results={this.state.results}/>
+
+                    <AddPlayerForm onSuccess={this.handleUpdate.bind(this)}/>
+
+                    <NewGameForm key="newgame" players={this.state.players}
+                                 handleUpdate={this.handleUpdate.bind(this)}/>
 
                 </div>
             </FadeInTransition>

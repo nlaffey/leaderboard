@@ -8,7 +8,7 @@ class Results extends React.Component {
 
     render() {
         return (
-            <div id="results">
+            <div id="results" className="col-md-12">
                 <h2>Game results</h2>
                 <Table data={this.props.results}
                        columns={[

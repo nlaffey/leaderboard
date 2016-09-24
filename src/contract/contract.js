@@ -78,7 +78,7 @@ class Contract {
     }
 
     addPlayer(data, callback) {
-        var player = new Player({name: data.playerName});
+        var player = new Player({name: data.playerName.trim()});
         var promise = player.save();
         callback(promise);
     }

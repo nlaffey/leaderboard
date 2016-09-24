@@ -143,8 +143,8 @@ class NewGame extends React.Component {
         const team1 = 1;
         const team2 = 2;
         return (
-            <div id="newGame">
-                <h2>New game</h2>
+            <div id="newGame" className="col-md-6">
+                <h2>Add game</h2>
                 <form>
                     <SelectPlayer id="SelectPlayerTeam1"
                                   selectedPlayer={this.state.playerTeam1}

@@ -83,7 +83,8 @@ class AddPlayerForm extends React.Component {
     render() {
         return (
             // Passing down the entire state here might be overkill, but I don't see the harm right now.
-            <div>
+            <div id="addPlayerForm" className="col-md-6">
+                <h2>Add player</h2>
                 <Form id={this.formId} formState={this.state}
                       handleSubmitForm={this.handleSubmit.bind(this)}
                       handleChange={this.handleChange.bind(this)}>

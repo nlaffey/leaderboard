@@ -15,6 +15,8 @@ class Players extends React.Component {
     }
 
     clearData() {
+        var confirm = window.confirm("Are you sure you want to clear all game history and people?");
+        if (!confirm) return;
         var _this = this;
         var xhr = $.get('/clearData');
         xhr.always(function () {
@@ -24,17 +26,17 @@ class Players extends React.Component {
 
     render() {
         return (
-            <div id="players">
+            <div id="players" className="col-md-12">
                 <h2>Players</h2>
-                    <Table data={this.props.players}
-                           columns={[{propName: 'name', friendlyName: 'Name'},
-                               {propName: 'win', friendlyName: 'Wins'},
-                               {propName: 'loss', friendlyName: 'Losses'},
-                               {propName: 'ratio', friendlyName: 'Ratio'}]}/>
-                    <button id="clearData" onClick={this.clearData.bind(this)} className="btn btn-danger">Clear data
-                    </button>
-                <h2> Add player </h2>
-                <AddPlayerForm onSuccess={this.props.handleUpdate}/>
+                <Table data={this.props.players}
+                       columns={[{propName: 'name', friendlyName: 'Name'},
+                           {propName: 'win', friendlyName: 'Wins'},
+                           {propName: 'loss', friendlyName: 'Losses'},
+                           {propName: 'ratio', friendlyName: 'Ratio'}]}/>
+                <button id="clearData" onClick={this.clearData.bind(this)} className="btn btn-danger">Clear data
+                </button>
+
+
             </div>
         );
     }

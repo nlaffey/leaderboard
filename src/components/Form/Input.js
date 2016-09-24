@@ -14,7 +14,10 @@ class Input extends React.Component {
                    name={this.props.name}
                    value={this.props.value}
                    onChange={this.props.handleChange}
-                   className="form-control"/>
+                   className="form-control"
+                   minLength={this.props.minLength}
+                   maxLength={this.props.maxLength}
+                   required={this.props.required}/>
         </div>)
     }
 

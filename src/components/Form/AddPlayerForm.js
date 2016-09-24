@@ -93,10 +93,14 @@ class AddPlayerForm extends React.Component {
                 <Form id={this.formId} formState={this.state}
                       handleSubmitForm={this.handleSubmit.bind(this)}
                       handleChange={this.handleChange.bind(this)}>
-                    <Input formId={this.formId} className={this.state.nameInvalid ? 'has-error' : ''}
+                    <Input formId={this.formId}
+                           className={this.state.nameInvalid ? 'has-error' : ''}
                            ariaInvalid={this.state.nameInvalid}
                            friendlyName="Name"
                            name="playerName"
+                           maxLength="50"
+                           minLength="2"
+                           required={true}
                     />
                 </Form>
             </div>

@@ -49,14 +49,13 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NOD_ENV': 'production'
+                'NODE_ENV': JSON.stringify('production')
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
-            minimize: process.env.NODE_ENV === 'production',
             compress: {
-                warnings: false
+                warnings: true
             }
-        }),
+        })
     ]
 };

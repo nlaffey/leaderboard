@@ -6,7 +6,7 @@ var dbAddress;
 if (isDeveloping) {
     dbAddress = 'mongodb://localhost/leaderboard';
 } else {
-    dbAddress = "mongodb://nlaffey:leaderboard@ds025583.mlab.com:25583/heroku_9g0m2zq4";
+    dbAddress = process.env.DBADDRESS;
 }
 mongoose.connect(dbAddress);
 

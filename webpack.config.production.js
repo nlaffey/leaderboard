@@ -26,7 +26,7 @@ module.exports = {
                 test: /\.js$/,
                 loader: "babel",
                 exclude: /(node_modules)/,
-                query: {presets: ['es2015','react']}
+                query: {presets: ['es2015']}
             },
             {
                 test: /\.jsx?/,
@@ -45,5 +45,17 @@ module.exports = {
                 loader: 'file?name=img/[name].[ext]'
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: true
+            }
+        })
+    ]
 };

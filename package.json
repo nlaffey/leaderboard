@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server.js",
+    "prestart": "webpack --config webpack.config.production.js",
     "dev-server": "webpack-dev-server",
     "build": "webpack",
-    "build-production": "NODE_ENV=production webpack -p ",
+    "build-production": "webpack --config webpack.config.production.js",
     "test": "jest --coverage",
-    "postInstall": "NODE_ENV=production webpack -p "
+    "postInstall": "webpack --config webpack.config.production.js"
   },
   "jest": {
     "moduleNameMapper": {
